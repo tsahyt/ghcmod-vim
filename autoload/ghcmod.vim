@@ -46,6 +46,16 @@ function! ghcmod#sig(line, col, path, ...) "{{{
   return [l:lines[0], l:lines[2 :]]
 endfunction "}}}
 
+function! ghcmod#auto(line, col, path, ...) "{{{
+  " `ghc-mod sig` is available since v5.0.0.
+  let l:cmd = ghcmod#build_command(['auto', a:path, a:line, a:col])
+  let l:lines = s:system('auto', l:cmd)
+  if len(l:lines) < 2
+    return []
+  endif
+  return l:lines[1]
+endfunction "}}}
+
 function! ghcmod#type(line, col, path, ...) "{{{
   let l:cmd = ghcmod#build_command(['type', a:path, a:line, a:col])
   let l:output = ghcmod#system(l:cmd)

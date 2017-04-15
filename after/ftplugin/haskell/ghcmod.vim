@@ -48,6 +48,7 @@ endif
 
 command! -buffer -nargs=0 -bang GhcModType call ghcmod#command#type(<bang>0)
 command! -buffer -nargs=0 -bang GhcModTypeInsert call ghcmod#command#type_insert(<bang>0)
+command! -buffer -nargs=0 -bang GhcModAuto call ghcmod#command#auto(<bang>0)
 command! -buffer -nargs=0 -bang GhcModSplitFunCase call ghcmod#command#split_function_case(<bang>0)
 command! -buffer -nargs=0 -bang GhcModSigCodegen call ghcmod#command#initial_code_from_signature(<bang>0)
 command! -buffer -nargs=? -bang GhcModInfo call ghcmod#command#info(<q-args>, <bang>0)

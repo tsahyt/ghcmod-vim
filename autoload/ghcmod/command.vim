@@ -72,6 +72,22 @@ function! ghcmod#command#split_function_case(force) "{{{
   delete _
 endfunction "}}}
 
+function! ghcmod#command#auto(force) "{{{
+  let l:path = s:buffer_path(a:force)
+  if empty(l:path)
+    return
+  endif
+
+  let l:decls = ghcmod#auto(line('.'), col('.'), l:path)
+  if empty(l:decls)
+    call ghcmod#util#print_warning('Could not fill hole')
+    return
+  endif
+
+  execute "normal! cw" . l:decls
+  " call append(line('.'), l:decls)
+endfunction "}}}
+
 function! ghcmod#command#initial_code_from_signature(force) "{{{
   let l:path = s:buffer_path(a:force)
   if empty(l:path)
